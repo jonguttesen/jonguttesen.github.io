@@ -4,7 +4,29 @@
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <script type="text/javascript">
-     var Firebase = require("firebase");
+      var Firebase = require("firebase");
+    
+      function readSingleFile(evt) {
+        //Retrieve the first (and only!) File from the FileList object
+        var f = evt.target.files[0]; 
+
+        if (f) {
+          var r = new FileReader();
+          r.onload = function(e) { 
+    	      var contents = e.target.result;
+            alert( "Got the file.n" 
+                  +"name: " + f.name + "n"
+                  +"type: " + f.type + "n"
+                  +"size: " + f.size + " bytesn"
+                  + "starts with: " + contents.substr(1, contents.indexOf("n"))
+            );  
+          }
+          r.readAsText(f);
+        } else { 
+          alert("Failed to load file");
+        }
+      } 
+      document.getElementById('filename').addEventListener('change', readSingleFile, false);
     </script>
     
 </head>
@@ -12,8 +34,8 @@
 <body>
 
 <div> 
-  <p>Name: <input type="text" ng-model="name"></p>
-  <p ng-bind="name"></p>
+  <p>Name: <input type="file" ng-model="filename"></p>
+  <!--<p ng-bind="filename"></p>-->
 </div>
 
 </body>
