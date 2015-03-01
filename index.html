@@ -7,9 +7,7 @@
       var Firebase = require("firebase");
     
       function readSingleFile(evt) {
-        //Retrieve the first (and only!) File from the FileList object
         var f = evt.target.files[0]; 
-
         if (f) {
           var r = new FileReader();
           r.onload = function(e) { 
@@ -34,7 +32,7 @@
 <body>
 
 <div> 
-  <p>Name: <input type="file" ng-model="filename"></p>
+  <p>Name: <input type="file" id="filename"></p>
   <!--<p ng-bind="filename"></p>-->
 </div>
 
