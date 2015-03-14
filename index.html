@@ -6,22 +6,40 @@
 <body>
 
   <div>
-    <input type="file" id="inpfilename" />
+    <input type="file" id="hplfilename" />
     <!--<p ng-bind="filename"></p>-->
   </div>
 
   <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script type="text/javascript">
+  
+      var FORMAT_HPL = { "FIELDS"": [
+        {"ADMINCODE": 3},
+        {"INDEX": 1},
+        {"HPLNUMBER": 8},
+        {"COMPLETENAME": 30},
+        {"SHORTNAME": 5},
+        {"ZONE": 6},
+        {"XCOORD": 10},
+        {"YCOORD": 10},
+        {"ZONE1": 5},
+        {"ZONE2": 5},
+        {"STOPTYPE": 1},
+        {"INTRCHNGVAL": 1},
+        {"SPECINTRCHNGVAL": 2},
+        {"CLASSIFICATION": 1 }, 
+        ]
+      };
       //var Firebase = require("firebase");
     
-      function readSingleFile(evt) {
+      function readSingleHPLFile(evt) {
         var f = evt.target.files[0]; 
         if (f) {
           var r = new FileReader();
           r.onload = function(e) { 
     	      var contents = e.target.result;
-            alert( "Got the file.n" 
+            alert( "Got the file.n "  
                   +"name: " + f.name + "n"
                   +"type: " + f.type + "n"
                   +"size: " + f.size + " bytesn"
@@ -33,7 +51,7 @@
           alert("Failed to load file");
         }
       } 
-      document.getElementById("inpfilename").addEventListener("change", readSingleFile, false);
+      document.getElementById("hplfilename").addEventListener("hplfilenamechange", readSingleHPLFile, false);
   </script>
 </body>
 </html>
