@@ -48,7 +48,7 @@
               var end = 0;
               for( var j = 0; j < FORMAT_HPL_1_3.FIELDS.length;j++) {
                 start = end;
-                end = begin + FORMAT_HPL_1_3.FIELDS[j].len;
+                end = start + FORMAT_HPL_1_3.FIELDS[j].len;
                 var str1 = str.substr(start, end);
                 FORMAT_HPL_1_3.FIELDS[j].value = str1;
               }
