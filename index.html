@@ -14,22 +14,22 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script type="text/javascript">
   
-      var FORMAT_HPL = {
+      var FORMAT_HPL_1_3 = {
         "FIELDS": [
-          {"name": "ADMINCODE", "length": 3},
-          {"name": "INDEX", "length": 1},
-          {"name": "HPLNUMBER", "length": 8},
-          {"name": "COMPLETENAME", "length": 30},
-          {"name": "SHORTNAME", "length": 5},
-          {"name": "ZONE", "length": 6},
-          {"name": "XCOORD", "length": 10},
-          {"name": "YCOORD", "length": 10},
-          {"name": "ZONE1", "length": 5},
-          {"name": "ZONE2", "length": 5},
-          {"name": "STOPTYPE", "length": 1},
-          {"name": "INTRCHNGVAL", "length": 1},
-          {"name": "SPECINTRCHNGVAL", "length": 2},
-          {"name": "CLASSIFICATION", "length": 1 } 
+          {"name": "ADMINCODE", "len": 3},
+          {"name": "INDEX", "len": 1},
+          {"name": "HPLNUMBER", "len": 8},
+          {"name": "COMPLETENAME", "len": 30},
+          {"name": "SHORTNAME", "len": 5},
+          {"name": "ZONE", "len": 6},
+          {"name": "XCOORD", "len": 10},
+          {"name": "YCOORD", "len": 10},
+          {"name": "ZONE1", "len": 5},
+          {"name": "ZONE2", "len": 5},
+          {"name": "STOPTYPE", "len": 1},
+          {"name": "INTRCHNGVAL", "len": 1},
+          {"name": "SPECINTRCHNGVAL", "len": 2},
+          {"name": "CLASSIFICATION", "len": 1 } 
         ]
       };
       //var Firebase = require("firebase");
@@ -38,20 +38,27 @@
         var f = evt.target.files[0]; 
         if (f) {
           var r = new FileReader();
-          r.onload = function(e) { 
-    	      var contents = e.target.result;
-            alert( "Got the file.n "  
-                  +"name: " + f.name + "n"
-                  +"type: " + f.type + "n"
-                  +"size: " + f.size + " bytesn"
-                  + "starts with: " + ocntents.substr(1, contents.indexOf("n"))
-            );  
+          r .onload = function(e) {
+            var contents = e.target.result;
+            var result = {};
+    	      var sstr = contents.split('\n);
+            for (var i = 0; i < sstr.length; i++) {
+              var str = sstr[i];
+              var start = 0;
+              var end = 0;
+              for( var j = 0; j < FORMAT_HPL_1_3.FIELDS.length;j++) {
+                start = end;
+                end = begin + FORMAT_HPL_1_3.FIELDS[j].length;
+                var str1 = str.substr(start, end);
+                FORMAT_HPL_1_3.FIELDS[j].value = str1;
+              }
+            }
           }
           r.readAsText(f);
         } else { 
           alert("Failed to load file");
         }
-      } 
+      }
       document.getElementById("hplfilename").addEventListener("hplfilenamechange", readSingleHPLFile, false);
   </script>
 </body>
