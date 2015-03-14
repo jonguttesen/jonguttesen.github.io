@@ -14,21 +14,22 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script type="text/javascript">
   
-      var FORMAT_HPL = { "FIELDS": [
-        {"ADMINCODE": 3},
-        {"INDEX": 1},
-        {"HPLNUMBER": 8},
-        {"COMPLETENAME": 30},
-        {"SHORTNAME": 5},
-        {"ZONE": 6},
-        {"XCOORD": 10},
-        {"YCOORD": 10},
-        {"ZONE1": 5},
-        {"ZONE2": 5},
-        {"STOPTYPE": 1},
-        {"INTRCHNGVAL": 1},
-        {"SPECINTRCHNGVAL": 2},
-        {"CLASSIFICATION": 1 }, 
+      var FORMAT_HPL = {
+        "FIELDS": [
+          {"name": "ADMINCODE", "length": 3},
+          {"name": "INDEX", "length": 1},
+          {"name": "HPLNUMBER", "length": 8},
+          {"name": "COMPLETENAME", "length": 30},
+          {"name": "SHORTNAME", "length": 5},
+          {"name": "ZONE", "length": 6},
+          {"name": "XCOORD", "length": 10},
+          {"name": "YCOORD", "length": 10},
+          {"name": "ZONE1", "length": 5},
+          {"name": "ZONE2", "length": 5},
+          {"name": "STOPTYPE", "length": 1},
+          {"name": "INTRCHNGVAL", "length": 1},
+          {"name": "SPECINTRCHNGVAL", "length": 2},
+          {"name": "CLASSIFICATION", "length": 1 } 
         ]
       };
       //var Firebase = require("firebase");
@@ -43,7 +44,7 @@
                   +"name: " + f.name + "n"
                   +"type: " + f.type + "n"
                   +"size: " + f.size + " bytesn"
-                  + "starts with: " + contents.substr(1, contents.indexOf("n"))
+                  + "starts with: " + ocntents.substr(1, contents.indexOf("n"))
             );  
           }
           r.readAsText(f);
