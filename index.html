@@ -1,9 +1,6 @@
-<!DOCTYPE html>
 <html ng-app>
 <head>
   <title>jonguttesen.github.io</title>
-  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   <script type="text/javascript">
       //var Firebase = require("firebase");
     
@@ -25,16 +22,18 @@
           alert("Failed to load file");
         }
       } 
-      document.getElementById('filename').addEventListener('change', readSingleFile, false);
+      document.getElementById("inpf_filename").addEventListener("change", readSingleFile, false);
   </script>
 </head>
 
 <body>
 
-<div>
-  <input type="file" name="filename" />
-  <!--<p ng-bind="filename"></p>-->
-</div>
+  <div>
+    <input type="file" name="filename" />
+    <!--<p ng-bind="filename"></p>-->
+  </div>
 
+  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 </body>
 </html>
