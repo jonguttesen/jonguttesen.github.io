@@ -22,14 +22,14 @@
           alert("Failed to load file");
         }
       } 
-      document.getElementById("inpf_filename").addEventListener("change", readSingleFile, false);
+      document.getElementById("inpfilename").addEventListener("change", readSingleFile, false);
   </script>
 </head>
 
 <body>
 
   <div>
-    <input type="file" name="filename" />
+    <input type="file" id="inpfilename" />
     <!--<p ng-bind="filename"></p>-->
   </div>
 
