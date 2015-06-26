@@ -9,6 +9,9 @@
     <input type="file" id="hplfilename" />
     <!--<p ng-bind="filename"></p>-->
   </div>
+  <div id="results">
+    
+  </div>
   
   <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
@@ -39,10 +42,11 @@
     };
     //var Firebase = require("firebase");
     function updateMap(hpl) {
-      alert( hpl.FIELDS.length );
-      alert( hpl.FIELDS[3].name );
-      alert( hpl.FIELDS[3].len );
-      alert( hpl.FIELDS[3].value );
+      document.getElementById("results").addNode(hpl.FIELDS[3].value);
+      //alert( hpl.FIELDS.length );
+      //alert( hpl.FIELDS[3].name );
+      //alert( hpl.FIELDS[3].len );
+      //alert( hpl.FIELDS[3].value );
     }
     
       function readSingleHPLFile(evt) {
