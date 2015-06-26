@@ -22,7 +22,7 @@
   
   <script type="text/javascript">
   
-    var FORMAT_HPL_1_3 = {
+    var HPL_VER_1_3 = {
       "FIELDS": [
         {"name": "ADMINCODE", "len": 3, "value": ""},
         {"name": "INDEX", "len": 1, "value": ""},
@@ -61,13 +61,13 @@
               var str = sstr[i];
               var start = 0;
               var end = 0;
-              for( var j = 0; j < FORMAT_HPL_1_3.FIELDS.length;j++) {
+              for( var j = 0; j < HPL_VER_1_3.FIELDS.length;j++) {
                 start = end;
-                end = start + FORMAT_HPL_1_3.FIELDS[j].len;
+                end = start + HPL_VER_1_3.FIELDS[j].len;
                 var str1 = str.substr(start, end - start);
-                FORMAT_HPL_1_3.FIELDS[j].value = str1;
+                HPL_VER_1_3.FIELDS[j].value = str1;
               }
-              updateMap(FORMAT_HPL_1_3);
+              updateMap(HPL_VER_1_3);
             }
           }
           r.readAsText(f);
