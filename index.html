@@ -67,8 +67,8 @@
                 var str1 = str.substr(start, end - start);
                 FORMAT_HPL_1_3.FIELDS[j].value = str1;
               }
+              updateMap(FORMAT_HPL_1_3);
             }
-            updateMap(FORMAT_HPL_1_3);
           }
           r.readAsText(f);
         } else { 
