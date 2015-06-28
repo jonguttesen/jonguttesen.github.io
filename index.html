@@ -81,17 +81,14 @@
         "zone_id": hpl.FIELDS[8].value
       };
       
-      myDataRef.push({
-        eval(stopEntry.stop_id):
-        {
+      myDataRef.child(stopEntry.stop_id).set({
         "stop_id": stopEntry.stop_id,
         "stop_code": stopEntry.stop_code,
         "stop_name": stopEntry.stop_name,
         "stop_lat": stopEntry.stop_lat,
         "stop_lon": stopEntry.stop_lon,
         "zone_id": stopEntry.zone_id
-        }
-      } );
+      });
     }
     
       function readSingleHPLFile(evt) {
