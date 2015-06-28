@@ -1,25 +1,22 @@
 <html ng-app>
 <head>
   <title>jonguttesen.github.io</title>
+  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 </head>
 
 <body>
+  
+  <script type="text/javascript">
+    var myDataRef = new Firebase('https://blistering-inferno-3618.firebaseio.com');
+  <script>
 
   <div>
     <input type="file" id="hplfilename" />
-    <!--<p ng-bind="filename"></p>-->
   </div>
   <div id="results">
     
   </div>
-  
-  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
-  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.1.0-X.5/angular-google-maps.js"></script>
-  
   <script type="text/javascript">
   
     var HPL_VER_1_3 = {
@@ -35,7 +32,7 @@
         {"name": "ZONE1", "len": 5, "value": ""},
         {"name": "ZONE2", "len": 5, "value": ""},
         {"name": "STOPTYPE", "len": 1, "value": ""},
-        {"name": "INTRCHNGVAL", "len": 1, "value": ""},
+       { "name": "INTRCHNGVAL", "len": 1, "value": ""},
         {"name": "SPECINTRCHNGVAL", "len": 2, "value": ""},
         {"name": "CLASSIFICATION", "len": 1, "value": ""} 
       ]
@@ -43,8 +40,6 @@
     
     //var Firebase = require("firebase");
     function updateMap(hpl) {
-  //    document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
-
       var stopEntry = {
         "stop_id": hpl.FIELDS[2].value,
         "stop_code": hpl.FIELDS[4].value,
@@ -53,6 +48,16 @@
         "stop_lon": hpl.FIELDS[7].value,
         "zone_id": hpl.FIELDS[8].value
       };
+      myDataRef.set( {
+        "stop_id": hpl.FIELDS[2].value,
+        "stop_code": hpl.FIELDS[4].value,
+        "stop_name": hpl.FIELDS[3].value,
+        "stop_lat": hpl.FIELDS[6].value,
+        "stop_lon": hpl.FIELDS[7].value,
+        "zone_id": hpl.FIELDS[8].value
+}
+        );
+      
       var p = document.createElement("p");  
       p.appendChild(document.createTextNode(stopEntry.stop_id));
       p.appendChild(document.createTextNode(", "));
@@ -66,10 +71,6 @@
       p.appendChild(document.createTextNode(", "));
       p.appendChild(document.createTextNode(stopEntry.zone_id));
       document.getElementById("results").appendChild(p);
-      //alert( hpl.FIELDS.length );
-      //alert( hpl.FIELDS[3].name );
-      //alert( hpl.FIELDS[3].len );
-      //alert( hpl.FIELDS[3].value );
     }
     
       function readSingleHPLFile(evt) {
