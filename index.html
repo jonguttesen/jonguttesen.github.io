@@ -46,11 +46,13 @@
       document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
 
       var stopEntry = {
-        stop_id: hpl.HPLNUMBER,
-        stop_code: hpl.SHORTNAME
+        "stop_id": hpl.HPLNUMBER,
+        "stop_code": hpl.SHORTNAME
       };
-      alert( stopEntry.stop_id );
-      alert( stopEntry.stop_code );
+      document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_id));
+      document.getElementById("results").appendChild(document.createTextNode(" - "));
+      document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_code));
+      document.getElementById("results").appendChild(document.createTextNode("<br />"));
       //alert( hpl.FIELDS.length );
       //alert( hpl.FIELDS[3].name );
       //alert( hpl.FIELDS[3].len );
