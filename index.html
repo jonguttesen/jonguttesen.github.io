@@ -8,7 +8,10 @@
 <body>
   
   <script type="text/javascript">
-    var myDataRef = new Firebase('https://blistering-inferno-3618.firebaseio.com');
+    var myDataRef = new Firebase("https://blistering-inferno-3618.firebaseio.com");
+    var myDataRef1 = myDataRef.child("stops");
+    myDataRef1.remove();
+    myDataRef = myDataRef.child("stops");
   </script>
 
   <div>
