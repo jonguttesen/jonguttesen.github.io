@@ -11,6 +11,7 @@
   </script>
 
   <div>
+    <p><a href="map.html">Map</a></p>
     <input type="file" id="hplfilename" />
   </div>
   <div id="results">
@@ -32,7 +33,7 @@
         {"name": "ZONE1", "len": 5, "value": ""},
         {"name": "ZONE2", "len": 5, "value": ""},
         {"name": "STOPTYPE", "len": 1, "value": ""},
-       { "name": "INTRCHNGVAL", "len": 1, "value": ""},
+        { "name": "INTRCHNGVAL", "len": 1, "value": ""},
         {"name": "SPECINTRCHNGVAL", "len": 2, "value": ""},
         {"name": "CLASSIFICATION", "len": 1, "value": ""} 
       ]
@@ -40,19 +41,19 @@
     
     myDataRef.on('child_added', function(snapshot) {
         var stopEntry = snapshot.val();
-      var p = document.createElement("p");  
-      p.appendChild(document.createTextNode(stopEntry.stop_id));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_code));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_name));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_lat));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_lon));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.zone_id));
-      document.getElementById("results").appendChild(p);
+        var p = document.createElement("p");  
+        p.appendChild(document.createTextNode(stopEntry.stop_id));
+        p.appendChild(document.createTextNode(", "));
+        p.appendChild(document.createTextNode(stopEntry.stop_code));
+        p.appendChild(document.createTextNode(", "));
+        p.appendChild(document.createTextNode(stopEntry.stop_name));
+        p.appendChild(document.createTextNode(", "));
+        p.appendChild(document.createTextNode(stopEntry.stop_lat));
+        p.appendChild(document.createTextNode(", "));
+        p.appendChild(document.createTextNode(stopEntry.stop_lon));
+        p.appendChild(document.createTextNode(", "));
+        p.appendChild(document.createTextNode(stopEntry.zone_id));
+        document.getElementById("results").appendChild(p);
     });
 
     function updateMap(hpl) {
@@ -71,7 +72,6 @@
         "stop_lat": hpl.FIELDS[6].value,
         "stop_lon": hpl.FIELDS[7].value,
         "zone_id": hpl.FIELDS[8].value
-        
       } );
     }
     
