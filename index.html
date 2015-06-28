@@ -60,7 +60,9 @@
     function updateMap(hpl) {
       var utm = "+proj=utm +zone=32";
       var wgs84 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs";
-      var latlon = proj4(utm,wgs84,[hpl.FIELDS[6].value, hpl.FIELDS[7].value]);
+      var lat1 = parseInt(hpl.FIELDS[6].value,10);
+      var lon1 = parseInt(hpl.FIELDS[7].value,10);
+      var latlon = proj4(utm,wgs84,[lat1, lon1);
     
       var stopEntry = {
         "stop_id": hpl.FIELDS[2].value,
