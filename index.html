@@ -49,10 +49,11 @@
         "stop_id": hpl.FIELDS[2].value,
         "stop_code": hpl.FIELDS[3].value
       };
-      document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_id));
-      document.getElementById("results").appendChild(document.createTextNode(" - "));
-      document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_code));
-      document.getElementById("results").appendChild(document.createNode("<br />"));
+      var p = document.createElement("<p>");  
+      p.appendChild(document.createTextNode(stopEntry.stop_id));
+      p.appendChild(document.createTextNode(" - "));
+      p.appendChild(document.createTextNode(stopEntry.stop_code));
+      document.getElementById("results").appendChild(p);
       //alert( hpl.FIELDS.length );
       //alert( hpl.FIELDS[3].name );
       //alert( hpl.FIELDS[3].len );
