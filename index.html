@@ -76,17 +76,20 @@
         "stop_id": hpl.FIELDS[2].value,
         "stop_code": hpl.FIELDS[4].value,
         "stop_name": hpl.FIELDS[3].value,
-        "stop_lat": isNaN(latlon[0]) ? latlon[0] : 0,
-        "stop_lon": isNaN(latlon[1]) ? latlon[1] : 0,
+        "stop_lat": isNaN(latlon[0]) ? 0 : latlon[0],
+        "stop_lon": isNaN(latlon[1]) ? 0 : latlon[1],
         "zone_id": hpl.FIELDS[8].value
       };
-      myDataRef.push( {
+      myDataRef.push({
+        stopEntry.stop_id:
+        {
         "stop_id": stopEntry.stop_id,
         "stop_code": stopEntry.stop_code,
         "stop_name": stopEntry.stop_name,
         "stop_lat": stopEntry.stop_lat,
         "stop_lon": stopEntry.stop_lon,
         "zone_id": stopEntry.zone_id
+        }
       } );
     }
     
