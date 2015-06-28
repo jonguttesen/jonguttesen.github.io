@@ -40,9 +40,16 @@
         {"name": "CLASSIFICATION", "len": 1, "value": ""} 
       ]
     };
+    
+    var StopEntry = {
+      stop_id: "",
+      stop_code: ""
+    }
     //var Firebase = require("firebase");
     function updateMap(hpl) {
       document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
+      
+      
       //alert( hpl.FIELDS.length );
       //alert( hpl.FIELDS[3].name );
       //alert( hpl.FIELDS[3].len );
