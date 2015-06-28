@@ -80,8 +80,9 @@
         "stop_lon": isNaN(latlon[1]) ? 0 : latlon[1],
         "zone_id": hpl.FIELDS[8].value
       };
+      
       myDataRef.push({
-        stopEntry.stop_id:
+        eval(stopEntry.stop_id):
         {
         "stop_id": stopEntry.stop_id,
         "stop_code": stopEntry.stop_code,
