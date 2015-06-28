@@ -46,8 +46,8 @@
   //    document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
 
       var stopEntry = {
-        "stop_id": hpl.HPLNUMBER,
-        "stop_code": hpl.SHORTNAME
+        "stop_id": hpl.FIELDS[2].value,
+        "stop_code": hpl.FIELDS[2].value
       };
       document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_id));
       document.getElementById("results").appendChild(document.createTextNode(" - "));
