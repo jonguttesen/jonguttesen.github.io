@@ -47,12 +47,24 @@
 
       var stopEntry = {
         "stop_id": hpl.FIELDS[2].value,
-        "stop_code": hpl.FIELDS[3].value
+        "stop_code": hpl.FIELDS[4].value,
+        "stop_name": hpl.FIELDS[3].value,
+        "stop_lat": hpl.FIELDS[6].value,
+        "stop_lon": hpl.FIELDS[7].value,
+        "zone_id": hpl.FIELDS[8].value
       };
       var p = document.createElement("p");  
       p.appendChild(document.createTextNode(stopEntry.stop_id));
-      p.appendChild(document.createTextNode(" - "));
+      p.appendChild(document.createTextNode(", "));
       p.appendChild(document.createTextNode(stopEntry.stop_code));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_name));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_lat));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_lon));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.zone_id));
       document.getElementById("results").appendChild(p);
       //alert( hpl.FIELDS.length );
       //alert( hpl.FIELDS[3].name );
