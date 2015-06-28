@@ -2,6 +2,7 @@
 <head>
   <title>jonguttesen.github.io</title>
   <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+  <script src="https://github.com/proj4js/proj4js/releases/download/2.3.3/proj4.js"></script>
 </head>
 
 <body>
@@ -57,21 +58,25 @@
     });
 
     function updateMap(hpl) {
+      var utm = "+proj=utm +zone=32";
+      var wgs84 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs";
+      var latlon = proj4(utm,wgs84,[hpl.FIELDS[6].value, hpl.FIELDS[7].value]);
+    
       var stopEntry = {
         "stop_id": hpl.FIELDS[2].value,
         "stop_code": hpl.FIELDS[4].value,
         "stop_name": hpl.FIELDS[3].value,
-        "stop_lat": hpl.FIELDS[6].value,
-        "stop_lon": hpl.FIELDS[7].value,
+        "stop_lat": latlon[0],
+        "stop_lon": latlon[1],
         "zone_id": hpl.FIELDS[8].value
       };
       myDataRef.push( {
-        "stop_id": hpl.FIELDS[2].value,
-        "stop_code": hpl.FIELDS[4].value,
-        "stop_name": hpl.FIELDS[3].value,
-        "stop_lat": hpl.FIELDS[6].value,
-        "stop_lon": hpl.FIELDS[7].value,
-        "zone_id": hpl.FIELDS[8].value
+        "stop_id": stopEntry.stop_id,
+        "stop_code": stopEntry.stop_code,
+        "stop_name": stopEntry.stop_name,
+        "stop_lat": stopEntry.stop_lat,
+        "stop_lon": stopEntry.stop_lon,
+        "zone_id": stopEntry.zone_id
       } );
     }
     
