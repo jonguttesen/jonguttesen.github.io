@@ -43,7 +43,7 @@
     
     //var Firebase = require("firebase");
     function updateMap(hpl) {
-      document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
+  //    document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
 
       var stopEntry = {
         "stop_id": hpl.HPLNUMBER,
@@ -52,7 +52,7 @@
       document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_id));
       document.getElementById("results").appendChild(document.createTextNode(" - "));
       document.getElementById("results").appendChild(document.createTextNode(stopEntry.stop_code));
-      document.getElementById("results").appendChild(document.createTextNode("<br />"));
+      document.getElementById("results").appendChild(document.createNode("<br />"));
       //alert( hpl.FIELDS.length );
       //alert( hpl.FIELDS[3].name );
       //alert( hpl.FIELDS[3].len );
