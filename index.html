@@ -38,7 +38,23 @@
       ]
     };
     
-    //var Firebase = require("firebase");
+    myDataRef.on('child_added', function(snapshot) {
+        var stopEntry = snapshot.val();
+      var p = document.createElement("p");  
+      p.appendChild(document.createTextNode(stopEntry.stop_id));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_code));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_name));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_lat));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.stop_lon));
+      p.appendChild(document.createTextNode(", "));
+      p.appendChild(document.createTextNode(stopEntry.zone_id));
+      document.getElementById("results").appendChild(p);
+    });
+
     function updateMap(hpl) {
       var stopEntry = {
         "stop_id": hpl.FIELDS[2].value,
@@ -57,20 +73,6 @@
         "zone_id": hpl.FIELDS[8].value
         
       } );
-      
-      var p = document.createElement("p");  
-      p.appendChild(document.createTextNode(stopEntry.stop_id));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_code));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_name));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_lat));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.stop_lon));
-      p.appendChild(document.createTextNode(", "));
-      p.appendChild(document.createTextNode(stopEntry.zone_id));
-      document.getElementById("results").appendChild(p);
     }
     
       function readSingleHPLFile(evt) {
