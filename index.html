@@ -48,8 +48,10 @@
     //var Firebase = require("firebase");
     function updateMap(hpl) {
       document.getElementById("results").appendChild(document.createTextNode(hpl.FIELDS[3].value));
-      
-      
+      StopEntry.stop_id = hpl.HPLNUMBER;
+      StopEntry.stop_code = hpl.SHORTNAME;
+      alert( StopEntry.stop_id );
+      alert( StopEntry.stop_code );
       //alert( hpl.FIELDS.length );
       //alert( hpl.FIELDS[3].name );
       //alert( hpl.FIELDS[3].len );
