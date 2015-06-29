@@ -13,6 +13,10 @@
   
   <script type="text/javascript">
     var myDataRef = new Firebase("https://blistering-inferno-3618.firebaseio.com/stops");
+    myDataRef.on("value", function(snapshot) {
+      var stopEntry = snapshot.val();
+      var map = document.querySelector('google-map');
+    });
   </script>
 
   <div>
@@ -21,13 +25,5 @@
   
   <google-map fit-to-markers></google-map>
 
-  <script type="text/javascript">
-    var map = document.querySelector('google-map');
-    
-    myDataRef.on('child_added', function(snapshot) {
-        var stopEntry = snapshot.val();
-        map.map.maps.Marker
-    });
-  </script>
 </body>
 </html>
