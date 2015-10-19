@@ -66,11 +66,24 @@
       },
 
       init: function() {
-
         this.ref = new Firebase("https://blistering-inferno-3618.firebaseio.com");
+
+        var lat = window.location.search.substring(window.location.search.indexOf('lat=') + 10);
+        if (lat.indexOf('&') >= 0) {
+          lat = lat.substring(0, lat.indexOf('&'));
+        }
+        var lon = window.location.search.substring(window.location.search.indexOf('lon=') + 10);
+        if (lon.indexOf('&') >= 0) {
+          lon = lon.substring(0, lon.indexOf('&'));
+        }
+        var zoom = window.location.search.substring(window.location.search.indexOf('zoom=') + 10);
+        if (zoom.indexOf('&') >= 0) {
+          zoom = zoom.substring(0, zoom.indexOf('&'));
+        }
+        
         this.map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          'center: {'lat': lat, 'lng': lon},
+          'zoom': zoom
         });
         vehicleRef = this.ref.child("vehicles");
         this.createVehicleListeners(vehicleRef);
