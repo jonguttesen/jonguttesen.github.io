@@ -25,9 +25,9 @@
         var latLng = new google.maps.LatLng(vehicle.lat, vehicle.lon);
 
         // CAPITALIZE THE FIRST LETTER OF BUS ROUTE STRING (if applicable, e.g., for the Brooklyn "B61" bus)
-        var routeHead = vehicle.routeTag.toString()[0].toUpperCase();
-        var routeTail = vehicle.routeTag.toString().slice(1);
-        var tag = routeHead + routeTail;
+        //var routeHead = vehicle.routeTag.toString()[0].toUpperCase();
+        //var routeTail = vehicle.routeTag.toString().slice(1);
+        var tag = vehicleId;
         var marker = new google.maps.Marker({          
           position: latLng,
           map: this.map,
