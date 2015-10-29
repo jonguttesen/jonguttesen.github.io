@@ -72,8 +72,8 @@
 
         this.ref = new Firebase("https://blistering-inferno-3618.firebaseio.com");
         this.map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          center: {lat: 62.2401375, lng: -6.6295994},
+          zoom: 13
         });
         vehicleRef = this.ref.child("vehicles");
         this.createVehicleListeners(vehicleRef);
