@@ -1,123 +1,45 @@
 <html>
 <head>
   <title>jonguttesen.github.io</title>
-  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-  <script src="https://github.com/proj4js/proj4js/releases/download/2.3.3/proj4.js"></script>
 </head>
 
 <body>
   
-  <script type="text/javascript">
-    var myDataRef = new Firebase("https://blistering-inferno-3618.firebaseio.com");
-    var myDataRef1 = myDataRef.child("stops");
-    myDataRef1.remove();
-    myDataRef = myDataRef.child("stops");
-  </script>
-
   <div>
-    <p><a href="map.html">Map</a></p>
-    <input type="file" id="hplfilename" />
-  </div>
-  <div id="results">
-    
+    <p>Niðurteljing</p>
+    <div id="demo"></div>
   </div>
 
-  <script type="text/javascript">
   
-    var HPL_VER_1_3 = {
-      "FIELDS": [
-        {"name": "ADMINCODE", "len": 3, "value": ""},
-        {"name": "INDEX", "len": 1, "value": ""},
-        {"name": "HPLNUMBER", "len": 8, "value": ""},
-        {"name": "COMPLETENAME", "len": 30, "value": ""},
-        {"name": "SHORTNAME", "len": 5, "value": ""},
-        {"name": "ZONE", "len": 6, "value": ""},
-        {"name": "XCOORD", "len": 10, "value": ""},
-        {"name": "YCOORD", "len": 10, "value": ""},
-        {"name": "ZONE1", "len": 5, "value": ""},
-        {"name": "ZONE2", "len": 5, "value": ""},
-        {"name": "STOPTYPE", "len": 1, "value": ""},
-        { "name": "INTRCHNGVAL", "len": 1, "value": ""},
-        {"name": "SPECINTRCHNGVAL", "len": 2, "value": ""},
-        {"name": "CLASSIFICATION", "len": 1, "value": ""} 
-      ]
-    };
-    
-    myDataRef.on('child_added', function(snapshot) {
-        var stopEntry = snapshot.val();
-        var p = document.createElement("p");  
-        p.appendChild(document.createTextNode(stopEntry.stop_id));
-        p.appendChild(document.createTextNode(", "));
-        p.appendChild(document.createTextNode(stopEntry.stop_code));
-        p.appendChild(document.createTextNode(", "));
-        p.appendChild(document.createTextNode(stopEntry.stop_name));
-        p.appendChild(document.createTextNode(", "));
-        p.appendChild(document.createTextNode(stopEntry.stop_lat));
-        p.appendChild(document.createTextNode(", "));
-        p.appendChild(document.createTextNode(stopEntry.stop_lon));
-        p.appendChild(document.createTextNode(", "));
-        p.appendChild(document.createTextNode(stopEntry.zone_id));
-        document.getElementById("results").appendChild(p);
-    });
+  <script type="text/javascript">
+    var countDownDate = new Date("Dec 9, 2018 22:00:00").getTime();    
 
-    function trimNumber(s) {
-      while (s.substr(0,1) == '0' && s.length>1) { s = s.substr(1,9999); }
-      return s;
-    }
+    var x = setInterval(function() {
 
-    function updateMap(hpl) {
-      var utm = "+proj=utm +zone=32";
-      var wgs84 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs";
-      var lat1 = parseInt(trimNumber(hpl.FIELDS[6].value),10);
-      var lon1 = parseInt(trimNumber(hpl.FIELDS[7].value),10);
-      var latlon = proj4(utm,wgs84,[lat1, lon1]);
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "t "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "ÚTGINGIÐ";
+  }
+}, 1000);
     
-      var stopEntry = {
-        "stop_id": hpl.FIELDS[2].value,
-        "stop_code": hpl.FIELDS[4].value,
-        "stop_name": hpl.FIELDS[3].value,
-        "stop_lat": isNaN(latlon[0]) ? 0 : latlon[0],
-        "stop_lon": isNaN(latlon[1]) ? 0 : latlon[1],
-        "zone_id": hpl.FIELDS[8].value
-      };
-      
-      myDataRef.child(stopEntry.stop_id).set({
-        "stop_id": stopEntry.stop_id,
-        "stop_code": stopEntry.stop_code,
-        "stop_name": stopEntry.stop_name,
-        "stop_lat": stopEntry.stop_lat,
-        "stop_lon": stopEntry.stop_lon,
-        "zone_id": stopEntry.zone_id
-      });
-    }
-    
-      function readSingleHPLFile(evt) {
-        var f = evt.target.files[0]; 
-        if (f) {
-          var r = new FileReader();
-          r.onload = function(e) {
-            var contents = e.target.result;
-            var result = {};
-    	      var sstr = contents.split("\n");
-            for (var i = 0; i < sstr.length; i++) {
-              var str = sstr[i];
-              var start = 0;
-              var end = 0;
-              for( var j = 0; j < HPL_VER_1_3.FIELDS.length;j++) {
-                start = end;
-                end = start + HPL_VER_1_3.FIELDS[j].len;
-                var str1 = str.substr(start, end - start);
-                HPL_VER_1_3.FIELDS[j].value = str1;
-              }
-              updateMap(HPL_VER_1_3);
-            }
-          }
-          r.readAsText(f);
-        } else { 
-          alert("Failed to load file");
-        }
-      }
-      document.getElementById("hplfilename").addEventListener("change", readSingleHPLFile, false);
-  </script>
+  </script>  
+  
 </body>
 </html>
